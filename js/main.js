@@ -1,3 +1,5 @@
+'use strict';
+
 var CLASSIFIED_QUANTITY = 8;
 
 function getRandomInt(min, max) {
@@ -42,7 +44,7 @@ var classifiedTemplate = document.querySelector('#pin')
 var renderClassified = function (сlassified) {
   var classifiedElement = classifiedTemplate.cloneNode(true);
 
-  classifiedElement.setAttribute('style', 'left: ' + сlassified.location.x + 'px; top: ' + сlassified.location.y +'px;');
+  classifiedElement.setAttribute('style', 'left: ' + сlassified.location.x + 'px; top: ' + сlassified.location.y + 'px;');
   classifiedElement.querySelector('img').setAttribute('src', сlassified.author.avatar);
   classifiedElement.querySelector('img').setAttribute('alt', сlassified.offer.type);
 
