@@ -1,7 +1,7 @@
 'use strict';
 
 var CLASSIFIED_QUANTITY = 8;
-var MAP_PIN_WEIGHT = 50;
+var MAP_PIN_WIDTH = 50;
 var MAP_PIN_HEIGHT = 75;
 var classifiedList = document.querySelector('.map__pins');
 var classifiedListWidth = classifiedList.offsetWidth;
@@ -44,7 +44,7 @@ var classifiedTemplate = document.querySelector('#pin')
 
 var renderClassified = function (сlassified) {
   var classifiedElement = classifiedTemplate.cloneNode(true);
-  var left = сlassified.location.x - MAP_PIN_WEIGHT / 2;
+  var left = сlassified.location.x - MAP_PIN_WIDTH / 2;
   var top = сlassified.location.y - MAP_PIN_HEIGHT;
 
   classifiedElement.setAttribute('style', 'left: ' + left + 'px; top: ' + top + 'px;');
