@@ -1,13 +1,11 @@
 'use strict';
 
 var CLASSIFIED_QUANTITY = 8;
-var MAP_PIN_WIDTH = 50;
-var MAP_PIN_HEIGHT = 75;
 var classifiedList = document.querySelector('.map__pins');
 var classifiedListWidth = classifiedList.offsetWidth;
 
 function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 var getRandomClassified = function () {
@@ -42,10 +40,21 @@ var classifiedTemplate = document.querySelector('#pin')
     .content
     .querySelector('.map__pin');
 
+var pin = classifiedTemplate;
+
+pin.style.position = 'absolute';
+pin.style.left = '-1000px';
+document.body.appendChild(pin);
+var params = pin.getBoundingClientRect();
+document.body.removeChild(pin);
+
+var pinWidth = params.width;
+var pinHeight = params.height;
+
 var renderClassified = function (сlassified) {
   var classifiedElement = classifiedTemplate.cloneNode(true);
-  var left = сlassified.location.x - MAP_PIN_WIDTH / 2;
-  var top = сlassified.location.y - MAP_PIN_HEIGHT;
+  var left = сlassified.location.x - pinWidth / 2;
+  var top = сlassified.location.y - pinHeight;
 
   classifiedElement.setAttribute('style', 'left: ' + left + 'px; top: ' + top + 'px;');
   classifiedElement.querySelector('img').setAttribute('src', сlassified.author.avatar);
