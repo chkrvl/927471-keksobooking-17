@@ -1,6 +1,8 @@
 'use strict';
 
 var CLASSIFIED_QUANTITY = 8;
+var classifiedList = document.querySelector('.map__pins');
+var classifiedListWidth = document.querySelector('.map__pins').offsetWidth;
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -9,7 +11,6 @@ function getRandomInt(min, max) {
 var getRandomClassified = function () {
   var imageLink = 'img/avatars/user0' + getRandomInt(1, CLASSIFIED_QUANTITY) + '.png';
   var types = ['palace', 'flat', 'house', 'bungalo'];
-  var mapWidth = document.querySelector('.map__pins').offsetWidth;
 
   return {
     author: {
@@ -19,7 +20,7 @@ var getRandomClassified = function () {
       type: types[getRandomInt(0, types.length - 1)]
     },
     location: {
-      x: getRandomInt(0, mapWidth),
+      x: getRandomInt(0, classifiedListWidth),
       y: getRandomInt(130, 630)
     }
   };
@@ -34,8 +35,6 @@ var getClassifieds = function (quantity) {
 
   return сlassifieds;
 };
-
-var classifiedList = document.querySelector('.map__pins');
 
 var classifiedTemplate = document.querySelector('#pin')
     .content
@@ -52,7 +51,7 @@ var renderClassified = function (сlassified) {
 };
 
 var fragment = document.createDocumentFragment();
-for (var i = 0; i < getClassifieds(CLASSIFIED_QUANTITY).length; i++) {
+for (var i = 0; i < CLASSIFIED_QUANTITY; i++) {
   fragment.appendChild(renderClassified(getClassifieds(CLASSIFIED_QUANTITY)[i]));
 }
 classifiedList.appendChild(fragment);
