@@ -51,8 +51,9 @@ var renderClassified = function (сlassified) {
 };
 
 var fragment = document.createDocumentFragment();
+var classifieds = getClassifieds(CLASSIFIED_QUANTITY);
 for (var i = 0; i < CLASSIFIED_QUANTITY; i++) {
-  fragment.appendChild(renderClassified(getClassifieds(CLASSIFIED_QUANTITY)[i]));
+  fragment.appendChild(renderClassified(classifieds[i]));
 }
 classifiedList.appendChild(fragment);
 
