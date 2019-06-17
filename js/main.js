@@ -2,7 +2,7 @@
 
 var CLASSIFIED_QUANTITY = 8;
 var classifiedList = document.querySelector('.map__pins');
-var classifiedListWidth = document.querySelector('.map__pins').offsetWidth;
+var classifiedListWidth = classifiedList.offsetWidth;
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -52,6 +52,7 @@ var renderClassified = function (сlassified) {
 
 var fragment = document.createDocumentFragment();
 var classifieds = getClassifieds(CLASSIFIED_QUANTITY);
+
 for (var i = 0; i < CLASSIFIED_QUANTITY; i++) {
   fragment.appendChild(renderClassified(classifieds[i]));
 }
