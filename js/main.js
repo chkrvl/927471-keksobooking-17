@@ -40,35 +40,35 @@ var classifiedTemplate = document.querySelector('#pin')
     .content
     .querySelector('.map__pin');
 
-var pin = classifiedTemplate;
-
-pin.style.position = 'absolute';
-pin.style.left = '-1000px';
-document.body.appendChild(pin);
-var params = pin.getBoundingClientRect();
-document.body.removeChild(pin);
-
-var pinWidth = params.width;
-var pinHeight = params.height;
-
-var renderClassified = function (сlassified) {
-  var classifiedElement = classifiedTemplate.cloneNode(true);
-  var left = сlassified.location.x - pinWidth / 2;
-  var top = сlassified.location.y - pinHeight;
-
-  classifiedElement.setAttribute('style', 'left: ' + left + 'px; top: ' + top + 'px;');
-  classifiedElement.querySelector('img').setAttribute('src', сlassified.author.avatar);
-  classifiedElement.querySelector('img').setAttribute('alt', сlassified.offer.type);
-
-  return classifiedElement;
-};
-
-var fragment = document.createDocumentFragment();
 var classifieds = getClassifieds(CLASSIFIED_QUANTITY);
 
-for (var i = 0; i < CLASSIFIED_QUANTITY; i++) {
-  fragment.appendChild(renderClassified(classifieds[i]));
-}
-classifiedList.appendChild(fragment);
+var renderClassifieds = function (arr) {
+  var fragment = document.createDocumentFragment();
 
+  // Получение размеров метки объявления
+  classifiedTemplate.style.position = 'absolute';
+  classifiedTemplate.style.left = '-1000px';
+  document.body.appendChild(classifiedTemplate);
+  var classifiedTemplateParams = classifiedTemplate.getBoundingClientRect();
+  document.body.removeChild(classifiedTemplate);
+  var pinWidth = classifiedTemplateParams.width;
+  var pinHeight = classifiedTemplateParams.height;
+
+  arr.forEach(function (сlassified) {
+    var classifiedElement = classifiedTemplate.cloneNode(true);
+    // Получение координат острого конца метки объявления
+    var left = сlassified.location.x - pinWidth / 2;
+    var top = сlassified.location.y - pinHeight;
+
+    classifiedElement.style = 'left: ' + left + 'px; top: ' + top + 'px;';
+    classifiedElement.querySelector('img').src = сlassified.author.avatar;
+    classifiedElement.querySelector('img').alt = сlassified.offer.type;
+
+    fragment.appendChild(classifiedElement);
+  });
+
+  classifiedList.appendChild(fragment);
+};
+
+renderClassifieds(classifieds);
 document.querySelector('.map').classList.remove('map--faded');
