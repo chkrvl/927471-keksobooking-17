@@ -3,7 +3,9 @@
 var CLASSIFIED_QUANTITY = 8;
 var classifiedList = document.querySelector('.map__pins');
 var classifiedListWidth = classifiedList.offsetWidth;
+var classifiedTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
 
+// Получение случайного целого значения в промежутке min и max, включая min и max
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -36,12 +38,6 @@ var getClassifieds = function (quantity) {
   return сlassifieds;
 };
 
-var classifiedTemplate = document.querySelector('#pin')
-    .content
-    .querySelector('.map__pin');
-
-var classifieds = getClassifieds(CLASSIFIED_QUANTITY);
-
 var renderClassifieds = function (arr) {
   var fragment = document.createDocumentFragment();
 
@@ -69,6 +65,8 @@ var renderClassifieds = function (arr) {
 
   classifiedList.appendChild(fragment);
 };
+
+var classifieds = getClassifieds(CLASSIFIED_QUANTITY);
 
 renderClassifieds(classifieds);
 document.querySelector('.map').classList.remove('map--faded');
