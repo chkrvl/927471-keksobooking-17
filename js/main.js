@@ -93,6 +93,7 @@ disableFormElements(mapFiltersFormElements);
 
 var onMainMapPinClick = function () {
   makeActive();
+  fillAdressInput();
 };
 
 var makeActive = function () {
@@ -103,6 +104,15 @@ var makeActive = function () {
   enableFormElements(mapFiltersFormElements);
   renderClassifieds(classifieds);
   mainMapPin.removeEventListener('click', onMainMapPinClick);
+};
+
+var fillAdressInput = function () {
+  var pinParams = mainMapPin.getBoundingClientRect();
+  var pinWidth = pinParams.width;
+  var pinHeight = pinParams.height;
+  var address = (pinParams.top + pinHeight) + ',' + (pinParams.left + pinWidth / 2);
+  var adressFormInput = adForm.querySelector('#address');
+  adressFormInput.value = address;
 };
 
 var mainMapPin = document.querySelector('.map__pin--main');
