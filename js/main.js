@@ -68,15 +68,43 @@ var renderClassifieds = function (arr) {
 
 var classifieds = getClassifieds(CLASSIFIED_QUANTITY);
 
-// renderClassifieds(classifieds);
-// document.querySelector('.map').classList.remove('map--faded');
-
+var map = document.querySelector('.map');
 var adForm = document.querySelector('.ad-form');
 var adFormHeader = adForm.querySelector('.ad-form-header');
 var adFormElements = adForm.querySelectorAll('.ad-form__element');
+var mapFiltersForm = map.querySelector('.map__filters');
+var mapFiltersFormElements = mapFiltersForm.querySelectorAll('.map__filter');
 
+var enableFormElements = function (arr) {
+  arr.forEach(function (element) {
+    element.disabled = false;
+  });
+};
+
+var disableFormElements = function (arr) {
+  arr.forEach(function (element) {
+    element.disabled = true;
+  });
+};
 
 adFormHeader.disabled = true;
-adFormElements.forEach(function (element) {
-  element.disabled = true;
-});
+disableFormElements(adFormElements);
+disableFormElements(mapFiltersFormElements);
+
+var onMainMapPinClick = function () {
+  makeActive();
+};
+
+var makeActive = function () {
+  map.classList.remove('map--faded');
+  adForm.classList.remove('ad-form--disabled');
+  adFormHeader.disabled = false;
+  enableFormElements(adFormElements);
+  enableFormElements(mapFiltersFormElements);
+  renderClassifieds(classifieds);
+  mainMapPin.removeEventListener('click', onMainMapPinClick);
+};
+
+var mainMapPin = document.querySelector('.map__pin--main');
+
+mainMapPin.addEventListener('click', onMainMapPinClick);
