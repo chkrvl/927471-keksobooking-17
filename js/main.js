@@ -68,5 +68,15 @@ var renderClassifieds = function (arr) {
 
 var classifieds = getClassifieds(CLASSIFIED_QUANTITY);
 
-renderClassifieds(classifieds);
-document.querySelector('.map').classList.remove('map--faded');
+// renderClassifieds(classifieds);
+// document.querySelector('.map').classList.remove('map--faded');
+
+var adForm = document.querySelector('.ad-form');
+var adFormHeader = adForm.querySelector('.ad-form-header');
+var adFormElements = adForm.querySelectorAll('.ad-form__element');
+
+
+adFormHeader.disabled = true;
+adFormElements.forEach(function (element) {
+  element.disabled = true;
+});
