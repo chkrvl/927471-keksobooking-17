@@ -72,8 +72,17 @@ var map = document.querySelector('.map');
 var adForm = document.querySelector('.ad-form');
 var adFormHeader = adForm.querySelector('.ad-form-header');
 var adFormElements = adForm.querySelectorAll('.ad-form__element');
+var adressFormInput = adForm.querySelector('#address');
 var mapFiltersForm = map.querySelector('.map__filters');
 var mapFiltersFormElements = mapFiltersForm.querySelectorAll('.map__filter');
+var mainMapPin = document.querySelector('.map__pin--main');
+
+var getDefaultAdressInputValue = function () {
+  var pinParams = mainMapPin.getBoundingClientRect();
+  adressFormInput.value = (pinParams.x + pinParams.width / 2) + ', ' + (pinParams.y + pinParams.height / 2);
+};
+
+getDefaultAdressInputValue();
 
 var enableFormElements = function (arr) {
   arr.forEach(function (element) {
@@ -110,11 +119,8 @@ var fillAdressInput = function () {
   var pinParams = mainMapPin.getBoundingClientRect();
   var pinWidth = pinParams.width;
   var pinHeight = pinParams.height;
-  var address = (pinParams.top + pinHeight) + ',' + (pinParams.left + pinWidth / 2);
-  var adressFormInput = adForm.querySelector('#address');
+  var address = (pinParams.left + pinWidth / 2) + ',' + (pinParams.top + pinHeight);
   adressFormInput.value = address;
 };
-
-var mainMapPin = document.querySelector('.map__pin--main');
 
 mainMapPin.addEventListener('click', onMainMapPinClick);
