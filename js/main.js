@@ -119,7 +119,7 @@ var fillAdressInput = function () {
   var pinParams = mainMapPin.getBoundingClientRect();
   var pinWidth = pinParams.width;
   var pinHeight = pinParams.height;
-  var address = (pinParams.left + pinWidth / 2) + ',' + (pinParams.top + pinHeight);
+  var address = (pinParams.left + pinWidth / 2) + ', ' + (pinParams.top + pinHeight);
   adressFormInput.value = address;
 };
 
