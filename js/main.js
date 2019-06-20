@@ -68,5 +68,59 @@ var renderClassifieds = function (arr) {
 
 var classifieds = getClassifieds(CLASSIFIED_QUANTITY);
 
-renderClassifieds(classifieds);
-document.querySelector('.map').classList.remove('map--faded');
+var map = document.querySelector('.map');
+var adForm = document.querySelector('.ad-form');
+var adFormHeader = adForm.querySelector('.ad-form-header');
+var adFormElements = adForm.querySelectorAll('.ad-form__element');
+var adressFormInput = adForm.querySelector('#address');
+var mapFiltersForm = map.querySelector('.map__filters');
+var mapFiltersFormElements = mapFiltersForm.querySelectorAll('.map__filter');
+var mainMapPin = document.querySelector('.map__pin--main');
+
+var getDefaultAdressInputValue = function () {
+  var pinParams = mainMapPin.getBoundingClientRect();
+  adressFormInput.value = (pinParams.x + pinParams.width / 2) + ', ' + (pinParams.y + pinParams.height / 2);
+};
+
+getDefaultAdressInputValue();
+
+var enableFormElements = function (arr) {
+  arr.forEach(function (element) {
+    element.disabled = false;
+  });
+};
+
+var disableFormElements = function (arr) {
+  arr.forEach(function (element) {
+    element.disabled = true;
+  });
+};
+
+adFormHeader.disabled = true;
+disableFormElements(adFormElements);
+disableFormElements(mapFiltersFormElements);
+
+var onMainMapPinClick = function () {
+  makeActive();
+  fillAdressInput();
+};
+
+var makeActive = function () {
+  map.classList.remove('map--faded');
+  adForm.classList.remove('ad-form--disabled');
+  adFormHeader.disabled = false;
+  enableFormElements(adFormElements);
+  enableFormElements(mapFiltersFormElements);
+  renderClassifieds(classifieds);
+  mainMapPin.removeEventListener('click', onMainMapPinClick);
+};
+
+var fillAdressInput = function () {
+  var pinParams = mainMapPin.getBoundingClientRect();
+  var pinWidth = pinParams.width;
+  var pinHeight = pinParams.height;
+  var address = (pinParams.left + pinWidth / 2) + ', ' + (pinParams.top + pinHeight);
+  adressFormInput.value = address;
+};
+
+mainMapPin.addEventListener('click', onMainMapPinClick);
