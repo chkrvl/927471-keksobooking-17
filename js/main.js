@@ -127,6 +127,8 @@ mainMapPin.addEventListener('click', onMainMapPinClick);
 
 var priceFormInput = adForm.querySelector('#price');
 var typeFormSelect = adForm.querySelector('#type');
+var timeInFormSelect = adForm.querySelector('#timein');
+var timeOutFormSelect = adForm.querySelector('#timeout');
 
 var BUNGALO_PRICE_THRESHOLD = '0';
 var FLAT_PRICE_THRESHOLD = '1000';
@@ -158,10 +160,21 @@ var getTypes = function () {
   return types;
 };
 
-typeFormSelect.addEventListener('change', function(evt) {
+typeFormSelect.addEventListener('change', function (evt) {
   var index = evt.target.selectedIndex;
   var minPrice = getTypes()[index].minPrice;
   priceFormInput.min = minPrice;
   priceFormInput.placeholder = minPrice;
 });
 
+timeInFormSelect.addEventListener('change', function (evt) {
+  if (evt.target.value !== timeOutFormSelect.value) {
+    timeOutFormSelect.value = evt.target.value;
+  }
+});
+
+timeOutFormSelect.addEventListener('change', function (evt) {
+  if (evt.target.value !== timeInFormSelect.value) {
+    timeInFormSelect.value = evt.target.value;
+  }
+});
