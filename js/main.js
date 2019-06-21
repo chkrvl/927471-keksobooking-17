@@ -160,10 +160,11 @@ var getTypes = function () {
   return types;
 };
 
+var lodgingTypes = getTypes();
+
 typeFormSelect.addEventListener('change', function (evt) {
   var index = evt.target.selectedIndex;
-  var minPrice = getTypes()[index].minPrice;
-  priceFormInput.min = minPrice;
+  priceFormInput.min = lodgingTypes[index].minPrice;
   priceFormInput.placeholder = priceFormInput.min;
 });
 
