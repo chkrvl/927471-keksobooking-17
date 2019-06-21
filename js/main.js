@@ -141,12 +141,12 @@ var getTypes = function () {
   for (var i = 0; i < typeFormSelect.options.length; i++) {
     var option = typeFormSelect.options[i];
     var type = {};
-    var getMinPriceValue = function (smth) {
-      if (smth.value === 'bungalo') {
+    var getMinPriceValue = function (lodging) {
+      if (lodging.value === 'bungalo') {
         return BUNGALO_PRICE_THRESHOLD;
-      } else if (smth.value === 'flat') {
+      } else if (lodging.value === 'flat') {
         return FLAT_PRICE_THRESHOLD;
-      } else if (smth.value === 'house') {
+      } else if (lodging.value === 'house') {
         return HOUSE_PRICE_THRESHOLD;
       } return PALACE_PRICE_THRESHOLD;
     };
@@ -164,7 +164,7 @@ typeFormSelect.addEventListener('change', function (evt) {
   var index = evt.target.selectedIndex;
   var minPrice = getTypes()[index].minPrice;
   priceFormInput.min = minPrice;
-  priceFormInput.placeholder = minPrice;
+  priceFormInput.placeholder = priceFormInput.min;
 });
 
 timeInFormSelect.addEventListener('change', function (evt) {
