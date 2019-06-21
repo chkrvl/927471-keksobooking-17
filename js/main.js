@@ -124,3 +124,53 @@ var fillAdressInput = function () {
 };
 
 mainMapPin.addEventListener('click', onMainMapPinClick);
+
+var priceFormInput = adForm.querySelector('#price');
+var typeFormSelect = adForm.querySelector('#type');
+
+// console.log(typeFormSelect.value);
+console.log(priceFormInput.min);
+
+var BUNGALO_PRICE_THRESHOLD = '0';
+var FLAT_PRICE_THRESHOLD = '1000';
+var HOUSE_PRICE_THRESHOLD = '5000';
+var PALACE_PRICE_THRESHOLD = '10000';
+
+var getTypes = function () {
+  var types = [];
+
+  for (var i = 0; i < typeFormSelect.options.length; i++) {
+    var option = typeFormSelect.options[i];
+    var type = {};
+    var getMinPriceValue = function (smth) {
+      if (smth.value === 'bungalo') {
+        return BUNGALO_PRICE_THRESHOLD;
+      } else if (smth.value === 'flat') {
+        return FLAT_PRICE_THRESHOLD;
+      } else if (smth.value === 'house') {
+        return HOUSE_PRICE_THRESHOLD;
+      } return PALACE_PRICE_THRESHOLD;
+    };
+
+    type.name = option.value;
+    type.index = option.index;
+    type.minPrice = getMinPriceValue(option);
+    types.push(type);
+  }
+
+  return types;
+};
+
+console.log(getTypes());
+
+var getMinPriceValue = function () {
+  var a;
+};
+
+// getMinPriceValue();
+
+console.log(typeFormSelect.selectedIndex);
+// console.log(typeFormSelect.options);
+// console.log(classifieds);
+// console.log(types);
+
