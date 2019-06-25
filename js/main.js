@@ -174,23 +174,20 @@ var PALACE_PRICE_THRESHOLD = '10000';
 
 var getTypes = function () {
   var types = [];
+  var lodgingThresholds = {
+    bungalo: BUNGALO_PRICE_THRESHOLD,
+    flat: FLAT_PRICE_THRESHOLD,
+    house: HOUSE_PRICE_THRESHOLD,
+    palace: PALACE_PRICE_THRESHOLD
+  };
 
   for (var i = 0; i < typeFormSelect.options.length; i++) {
     var option = typeFormSelect.options[i];
     var type = {};
-    var getMinPriceValue = function (lodging) {
-      if (lodging.value === 'bungalo') {
-        return BUNGALO_PRICE_THRESHOLD;
-      } else if (lodging.value === 'flat') {
-        return FLAT_PRICE_THRESHOLD;
-      } else if (lodging.value === 'house') {
-        return HOUSE_PRICE_THRESHOLD;
-      } return PALACE_PRICE_THRESHOLD;
-    };
 
     type.name = option.value;
     type.index = option.index;
-    type.minPrice = getMinPriceValue(option);
+    type.minPrice = lodgingThresholds[type.name];
     types.push(type);
   }
 
