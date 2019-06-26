@@ -161,11 +161,11 @@ mainMapPin.addEventListener('mousedown', function (evt) {
     };
 
     var mainMapPinX = mainMapPin.offsetLeft - shift.x;
-    if (mainMapPinX < CLASSIFIED_COORD_LIMITS.minX) {
+    if (mainMapPinX < CLASSIFIED_COORD_LIMITS.minX - window.pinParams.width / 2) {
       mainMapPinX = CLASSIFIED_COORD_LIMITS.minX;
     }
-    if (mainMapPinX > CLASSIFIED_COORD_LIMITS.maxX) {
-      mainMapPinX = CLASSIFIED_COORD_LIMITS.maxX;
+    if (mainMapPinX > CLASSIFIED_COORD_LIMITS.maxX - window.pinParams.width / 2) {
+      mainMapPinX = CLASSIFIED_COORD_LIMITS.maxX - window.pinParams.width / 2;
     }
 
     var mainMapPinY = mainMapPin.offsetTop - shift.y;
