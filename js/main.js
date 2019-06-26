@@ -88,7 +88,7 @@ var mapFiltersFormElements = mapFiltersForm.querySelectorAll('.map__filter');
 var mainMapPin = document.querySelector('.map__pin--main');
 
 // получение параметров основной метки
-var getMainPinParams = function (pin) {
+var setMainPinParams = function (pin) {
   window.pinParams = {
     x: pin.offsetLeft,
     y: pin.offsetTop,
@@ -98,7 +98,7 @@ var getMainPinParams = function (pin) {
 };
 
 var getDefaultAdressInputValue = function () {
-  getMainPinParams(mainMapPin);
+  setMainPinParams(mainMapPin);
   adressFormInput.value = (Math.round(window.pinParams.x + window.pinParams.width / 2)) + ', ' + (Math.round(window.pinParams.y + window.pinParams.height / 2));
 };
 
@@ -132,7 +132,7 @@ var makeActive = function () {
 };
 
 var fillAdressInput = function () {
-  getMainPinParams(mainMapPin);
+  setMainPinParams(mainMapPin);
   var address = Math.round(window.pinParams.x + window.pinParams.width / 2) + ', ' + Math.round(window.pinParams.y + window.pinParams.height);
   adressFormInput.value = address;
 };
@@ -163,16 +163,14 @@ mainMapPin.addEventListener('mousedown', function (evt) {
     var mainMapPinX = mainMapPin.offsetLeft - shift.x;
     if (mainMapPinX < CLASSIFIED_COORD_LIMITS.minX - window.pinParams.width / 2) {
       mainMapPinX = CLASSIFIED_COORD_LIMITS.minX;
-    }
-    if (mainMapPinX > CLASSIFIED_COORD_LIMITS.maxX - window.pinParams.width / 2) {
+    } else if (mainMapPinX > CLASSIFIED_COORD_LIMITS.maxX - window.pinParams.width / 2) {
       mainMapPinX = CLASSIFIED_COORD_LIMITS.maxX - window.pinParams.width / 2;
     }
 
     var mainMapPinY = mainMapPin.offsetTop - shift.y;
     if (mainMapPinY < CLASSIFIED_COORD_LIMITS.minY) {
       mainMapPinY = CLASSIFIED_COORD_LIMITS.minY;
-    }
-    if (mainMapPinY > CLASSIFIED_COORD_LIMITS.maxY) {
+    } else if (mainMapPinY > CLASSIFIED_COORD_LIMITS.maxY) {
       mainMapPinY = CLASSIFIED_COORD_LIMITS.maxY;
     }
 
