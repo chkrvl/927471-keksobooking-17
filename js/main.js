@@ -13,6 +13,8 @@ var CLASSIFIED_COORD_LIMITS = {
   maxY: 630
 };
 
+var initialClassifiedListChildrenQuantity = classifiedList.children.length;
+
 // Получение случайного целого значения в промежутке min и max, включая min и max
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -124,7 +126,9 @@ var makeActive = function () {
   adFormHeader.disabled = false;
   enableFormElements(adFormElements);
   enableFormElements(mapFiltersFormElements);
-  renderClassifieds(classifieds);
+  if (classifiedList.children.length < initialClassifiedListChildrenQuantity + CLASSIFIED_QUANTITY) {
+    renderClassifieds(classifieds);
+  }
 };
 
 var fillAdressInput = function () {
