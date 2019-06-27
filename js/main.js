@@ -15,13 +15,8 @@ var CLASSIFIED_COORD_LIMITS = {
 
 var initialClassifiedListChildrenQuantity = classifiedList.children.length;
 
-// Получение случайного целого значения в промежутке min и max, включая min и max
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 var getRandomClassified = function () {
-  var imageLink = 'img/avatars/user0' + getRandomInt(1, CLASSIFIED_QUANTITY) + '.png';
+  var imageLink = 'img/avatars/user0' + window.util.getRandomInt(1, CLASSIFIED_QUANTITY) + '.png';
   var types = ['palace', 'flat', 'house', 'bungalo'];
 
   return {
@@ -29,11 +24,11 @@ var getRandomClassified = function () {
       avatar: imageLink
     },
     offer: {
-      type: types[getRandomInt(0, types.length - 1)]
+      type: types[window.util.getRandomInt(0, types.length - 1)]
     },
     location: {
-      x: getRandomInt(0, classifiedListWidth),
-      y: getRandomInt(CLASSIFIED_COORD_LIMITS.minY, CLASSIFIED_COORD_LIMITS.maxY)
+      x: window.util.getRandomInt(0, classifiedListWidth),
+      y: window.util.getRandomInt(CLASSIFIED_COORD_LIMITS.minY, CLASSIFIED_COORD_LIMITS.maxY)
     }
   };
 };
