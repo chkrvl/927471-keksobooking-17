@@ -19,28 +19,22 @@
   var HOUSE_PRICE_THRESHOLD = '5000';
   var PALACE_PRICE_THRESHOLD = '10000';
 
-  var enableFormElements = function (arr) {
+  var disableFormElements = function (arr, status) {
     arr.forEach(function (element) {
-      element.disabled = false;
-    });
-  };
-
-  var disableFormElements = function (arr) {
-    arr.forEach(function (element) {
-      element.disabled = true;
+      element.disabled = status;
     });
   };
 
   adFormHeader.disabled = true;
-  disableFormElements(adFormElements);
-  disableFormElements(mapFiltersFormElements);
+  disableFormElements(adFormElements, true);
+  disableFormElements(mapFiltersFormElements, true);
 
   var makeActive = function () {
     map.classList.remove('map--faded');
     adForm.classList.remove('ad-form--disabled');
     adFormHeader.disabled = false;
-    enableFormElements(adFormElements);
-    enableFormElements(mapFiltersFormElements);
+    disableFormElements(adFormElements, false);
+    disableFormElements(mapFiltersFormElements, false);
     if (window.data.classifiedList.children.length < initialClassifiedListChildrenQuantity + window.data.CLASSIFIED_QUANTITY) {
       window.data.renderClassifieds(window.data.classifieds);
     }
