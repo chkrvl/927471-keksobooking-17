@@ -17,7 +17,7 @@
   };
 
   // получение координат основной метки до клика
-  (function () {
+  (function setDefaultAdressInputValue() {
     var pinParams = getMainPinParams(mainMapPin);
     adressFormInput.value = (Math.round(pinParams.x + pinParams.width / 2)) + ', ' + (Math.round(pinParams.y + pinParams.height / 2));
   })();
