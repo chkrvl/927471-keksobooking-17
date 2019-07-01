@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+  var classifiedList = document.querySelector('.map__pins');
   var classifiedTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
 
   var renderClassifieds = function (arr) {
@@ -28,11 +29,12 @@
       fragment.appendChild(classifiedElement);
     });
 
-    window.data.classifiedList.appendChild(fragment);
+    classifiedList.appendChild(fragment);
   };
 
   window.render = {
     renderClassifieds: renderClassifieds,
+    classifiedList: classifiedList
   };
 
 })();

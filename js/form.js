@@ -7,7 +7,7 @@
   var map = document.querySelector('.map');
   var mapFiltersForm = map.querySelector('.map__filters');
   var mapFiltersFormElements = mapFiltersForm.querySelectorAll('.map__filter');
-  var initialClassifiedListChildrenQuantity = window.data.classifiedList.children.length;
+  var initialClassifiedListChildrenQuantity = window.render.classifiedList.children.length;
 
   var priceFormInput = adForm.querySelector('#price');
   var typeFormSelect = adForm.querySelector('#type');
@@ -35,7 +35,7 @@
     adFormHeader.disabled = false;
     disableFormElements(adFormElements, false);
     disableFormElements(mapFiltersFormElements, false);
-    if (window.data.classifiedList.children.length < initialClassifiedListChildrenQuantity + window.data.CLASSIFIED_QUANTITY) {
+    if (window.render.classifiedList.children.length < initialClassifiedListChildrenQuantity + window.data.CLASSIFIED_QUANTITY) {
       window.render.renderClassifieds(window.data.classifieds);
     }
   };

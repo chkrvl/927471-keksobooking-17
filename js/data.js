@@ -3,12 +3,11 @@
 (function () {
   var CLASSIFIED_QUANTITY = 8;
 
-  var classifiedList = document.querySelector('.map__pins');
-  var classifiedListWidth = classifiedList.offsetWidth;
+  var classifiedListWidth = document.querySelector('.map__pins').offsetWidth;
 
   var CLASSIFIED_COORD_LIMITS = {
     minX: 0,
-    maxX: classifiedList.offsetWidth,
+    maxX: classifiedListWidth,
     minY: 130,
     maxY: 630
   };
@@ -46,7 +45,6 @@
   window.data = {
     CLASSIFIED_QUANTITY: CLASSIFIED_QUANTITY,
     CLASSIFIED_COORD_LIMITS: CLASSIFIED_COORD_LIMITS,
-    classifiedList: classifiedList,
     classifieds: classifieds
   };
 
