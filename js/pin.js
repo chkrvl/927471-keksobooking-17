@@ -43,9 +43,23 @@
     };
 
     var onMouseUp = function (upEvt) {
+      var getAdressCoords = function () {
+        var pinParams = window.map.getMainPinParams(window.map.mainMapPin);
+
+        return {
+          x: Math.round(pinParams.x + pinParams.width / 2),
+          y: Math.round(pinParams.y + pinParams.height)
+        };
+      };
+
+      var fillAdressInput = function (x, y) {
+        var address = x + ', ' + y;
+        window.map.adressFormInput.value = address;
+      };
+
       upEvt.preventDefault();
 
-      window.form.fillAdressInput();
+      fillAdressInput(getAdressCoords().x, getAdressCoords().y);
 
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseup', onMouseUp);

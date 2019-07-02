@@ -40,13 +40,6 @@
     }
   };
 
-
-  var fillAdressInput = function () {
-    var pinParams = window.map.getMainPinParams(window.map.mainMapPin);
-    var address = Math.round(pinParams.x + pinParams.width / 2) + ', ' + Math.round(pinParams.y + pinParams.height);
-    window.map.adressFormInput.value = address;
-  };
-
   var getTypes = function () {
     var types = [];
     var lodgingThresholds = {
@@ -90,7 +83,6 @@
   });
 
   window.form = {
-    fillAdressInput: fillAdressInput,
     makeActive: makeActive
   };
 
