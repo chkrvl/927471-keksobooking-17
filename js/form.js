@@ -70,17 +70,16 @@
     priceFormInput.placeholder = priceFormInput.min;
   });
 
-  timeInFormSelect.addEventListener('change', function (evt) {
-    if (evt.target.value !== timeOutFormSelect.value) {
-      timeOutFormSelect.value = evt.target.value;
-    }
-  });
+  var checkInputEquivalence = function (main, verifiable) {
+    main.addEventListener('change', function (evt) {
+      if (evt.target.value !== verifiable.value) {
+        verifiable.value = evt.target.value;
+      }
+    });
+  };
 
-  timeOutFormSelect.addEventListener('change', function (evt) {
-    if (evt.target.value !== timeInFormSelect.value) {
-      timeInFormSelect.value = evt.target.value;
-    }
-  });
+  checkInputEquivalence(timeInFormSelect, timeOutFormSelect);
+  checkInputEquivalence(timeOutFormSelect, timeInFormSelect);
 
   window.form = {
     makeActive: makeActive
