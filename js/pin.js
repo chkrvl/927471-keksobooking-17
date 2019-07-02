@@ -43,7 +43,10 @@
     };
 
     var onMouseUp = function (upEvt) {
+      upEvt.preventDefault();
+
       var getAdressCoords = function () {
+        pinParams = window.map.getMainPinParams(window.map.mainMapPin);
 
         return {
           x: Math.round(pinParams.x + pinParams.width / 2),
@@ -55,8 +58,6 @@
         var address = x + ', ' + y;
         window.map.adressFormInput.value = address;
       };
-
-      upEvt.preventDefault();
 
       fillAdressInput(getAdressCoords().x, getAdressCoords().y);
 
