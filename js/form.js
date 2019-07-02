@@ -70,7 +70,7 @@
     priceFormInput.placeholder = priceFormInput.min;
   });
 
-  var checkInputEquivalence = function (main, verifiable) {
+  var checkTimeSelectEquivalence = function (main, verifiable) {
     main.addEventListener('change', function (evt) {
       if (evt.target.value !== verifiable.value) {
         verifiable.value = evt.target.value;
@@ -78,8 +78,8 @@
     });
   };
 
-  checkInputEquivalence(timeInFormSelect, timeOutFormSelect);
-  checkInputEquivalence(timeOutFormSelect, timeInFormSelect);
+  checkTimeSelectEquivalence(timeInFormSelect, timeOutFormSelect);
+  checkTimeSelectEquivalence(timeOutFormSelect, timeInFormSelect);
 
   window.form = {
     makeActive: makeActive
