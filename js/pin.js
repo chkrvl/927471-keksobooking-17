@@ -9,10 +9,10 @@
       y: evt.clientY,
     };
 
+    var pinParams = window.map.getMainPinParams(window.map.mainMapPin);
+
     var onMouseMove = function (moveEvt) {
       moveEvt.preventDefault();
-
-      var pinParams = window.map.getMainPinParams(window.map.mainMapPin);
 
       var shift = {
         x: startCoords.x - moveEvt.clientX,
@@ -44,7 +44,6 @@
 
     var onMouseUp = function (upEvt) {
       var getAdressCoords = function () {
-        var pinParams = window.map.getMainPinParams(window.map.mainMapPin);
 
         return {
           x: Math.round(pinParams.x + pinParams.width / 2),
