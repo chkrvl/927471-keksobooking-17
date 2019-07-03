@@ -32,18 +32,16 @@
 
   var сlassifieds = null;
 
-  var getClassifieds = function (quantity) {
+  var getClassifieds = function () {
     if (сlassifieds === null) {
       сlassifieds = [];
 
-      for (var i = 0; i < quantity; i++) {
+      for (var i = 0; i < CLASSIFIED_QUANTITY; i++) {
         сlassifieds.push(getRandomClassified());
       }
-
-      return сlassifieds;
-    } else {
       return сlassifieds;
     }
+    return сlassifieds;
   };
 
   window.data = {

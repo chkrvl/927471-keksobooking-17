@@ -36,7 +36,7 @@
     disableFormElements(adFormElements, false);
     disableFormElements(mapFiltersFormElements, false);
     if (window.render.classifiedList.children.length < initialClassifiedListChildrenQuantity + window.data.CLASSIFIED_QUANTITY) {
-      window.render.renderClassifieds(window.data.getClassifieds(window.data.CLASSIFIED_QUANTITY));
+      window.render.renderClassifieds(window.data.getClassifieds());
     }
   };
 
