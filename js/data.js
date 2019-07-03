@@ -30,22 +30,26 @@
     };
   };
 
+  var сlassifieds = null;
+
   var getClassifieds = function (quantity) {
-    var сlassifieds = [];
+    if (сlassifieds === null) {
+      сlassifieds = [];
 
-    for (var i = 0; i < quantity; i++) {
-      сlassifieds.push(getRandomClassified());
+      for (var i = 0; i < quantity; i++) {
+        сlassifieds.push(getRandomClassified());
+      }
+
+      return сlassifieds;
+    } else {
+      return сlassifieds;
     }
-
-    return сlassifieds;
   };
-
-  var classifieds = getClassifieds(CLASSIFIED_QUANTITY);
 
   window.data = {
     CLASSIFIED_QUANTITY: CLASSIFIED_QUANTITY,
     CLASSIFIED_COORD_LIMITS: CLASSIFIED_COORD_LIMITS,
-    classifieds: classifieds
+    getClassifieds: getClassifieds
   };
 
 })();
