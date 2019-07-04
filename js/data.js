@@ -12,32 +12,14 @@
     maxY: 630
   };
 
-  var getRandomClassified = function () {
-    var imageLink = 'img/avatars/user0' + window.util.getRandomInt(1, CLASSIFIED_QUANTITY) + '.png';
-    var types = ['palace', 'flat', 'house', 'bungalo'];
-
-    return {
-      author: {
-        avatar: imageLink
-      },
-      offer: {
-        type: types[window.util.getRandomInt(0, types.length - 1)]
-      },
-      location: {
-        x: window.util.getRandomInt(0, classifiedListWidth),
-        y: window.util.getRandomInt(CLASSIFIED_COORD_LIMITS.minY, CLASSIFIED_COORD_LIMITS.maxY)
-      }
-    };
-  };
-
   var сlassifieds = null;
 
-  var getClassifieds = function () {
+  var getClassifieds = function (arr) {
     if (сlassifieds === null) {
       сlassifieds = [];
 
       for (var i = 0; i < CLASSIFIED_QUANTITY; i++) {
-        сlassifieds.push(getRandomClassified());
+        сlassifieds.push(arr[i]);
       }
       return сlassifieds;
     }

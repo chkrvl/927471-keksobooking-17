@@ -1,6 +1,8 @@
 'use strict';
 
 (function () {
+  var URL = 'https://js.dump.academy/keksobooking/data';
+
   var classifiedList = document.querySelector('.map__pins');
   var classifiedTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
 
@@ -31,6 +33,15 @@
 
     classifiedList.appendChild(fragment);
   };
+
+  var renderErrorNotice = function () {
+    var main = document.body.querySelector('main');
+    var errorTemplate = document.querySelector('#error').content.querySelector('.error');
+
+    main.appendChild(errorTemplate);
+  };
+
+  window.load(URL, window.data.getClassifieds, renderErrorNotice);
 
   window.render = {
     renderClassifieds: renderClassifieds,
