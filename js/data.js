@@ -18,7 +18,7 @@
     if (сlassifieds === null) {
       сlassifieds = [];
 
-      for (var i = 0; i < CLASSIFIED_QUANTITY; i++) {
+      for (var i = 0; i < arr.length; i++) {
         сlassifieds.push(arr[i]);
       }
       return сlassifieds;
