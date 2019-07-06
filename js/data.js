@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+  var URL = 'https://js.dump.academy/keksobooking/data';
   var CLASSIFIED_QUANTITY = 8;
 
   var classifiedListWidth = document.querySelector('.map__pins').offsetWidth;
@@ -14,15 +15,19 @@
 
   var сlassifieds = null;
 
-  var getClassifieds = function (arr) {
+  var getClassifieds = function () {
     if (сlassifieds === null) {
       сlassifieds = [];
 
-      for (var i = 0; i < arr.length; i++) {
-        сlassifieds.push(arr[i]);
-      }
-      return сlassifieds;
+      var getData = function (arr) {
+        for (var i = 0; i < arr.length; i++) {
+          сlassifieds.push(arr[i]);
+        }
+      };
+
+      window.load(URL, getData, window.error.renderErrorNotice);
     }
+
     return сlassifieds;
   };
 
