@@ -20,16 +20,16 @@
       сlassifieds = [];
 
       var getData = function (arr) {
-        for (var i = 0; i < arr.length; i++) {
-          сlassifieds.push(arr[i]);
-        }
+        сlassifieds = arr.slice();
       };
 
-      window.load(URL, getData, window.error.renderErrorNotice);
+      window.backend.load(URL, getData, window.error.renderErrorNotice);
     }
 
     return сlassifieds;
   };
+
+  getClassifieds();
 
   window.data = {
     CLASSIFIED_QUANTITY: CLASSIFIED_QUANTITY,
