@@ -14,10 +14,12 @@
   var timeInFormSelect = adForm.querySelector('#timein');
   var timeOutFormSelect = adForm.querySelector('#timeout');
 
-  var BUNGALO_PRICE_THRESHOLD = '0';
-  var FLAT_PRICE_THRESHOLD = '1000';
-  var HOUSE_PRICE_THRESHOLD = '5000';
-  var PALACE_PRICE_THRESHOLD = '10000';
+  var PriceThreshold = {
+    BUNGALO: '0',
+    FLAT: '1000',
+    HOUSE: '5000',
+    PALACE: '10000'
+  };
 
   var disableFormElements = function (arr, status) {
     arr.forEach(function (element) {
@@ -43,10 +45,10 @@
   var getTypes = function () {
     var types = [];
     var lodgingThresholds = {
-      bungalo: BUNGALO_PRICE_THRESHOLD,
-      flat: FLAT_PRICE_THRESHOLD,
-      house: HOUSE_PRICE_THRESHOLD,
-      palace: PALACE_PRICE_THRESHOLD
+      bungalo: PriceThreshold.BUNGALO,
+      flat: PriceThreshold.FLAT,
+      house: PriceThreshold.HOUSE,
+      palace: PriceThreshold.PALACE
     };
 
     for (var i = 0; i < typeFormSelect.options.length; i++) {
