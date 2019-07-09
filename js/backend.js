@@ -4,7 +4,7 @@
   var SUCCESS_ANSWER_CODE = 200;
   var MAX_TIMEOUT = 10000; // в миллисекундах
 
-  window.load = function (url, onSuccess, onError) {
+  var load = function (url, onSuccess, onError) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
@@ -28,5 +28,9 @@
 
     xhr.open('GET', url);
     xhr.send();
+  };
+
+  window.backend = {
+    load: load
   };
 })();
