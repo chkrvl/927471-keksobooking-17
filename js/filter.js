@@ -5,6 +5,8 @@
   // меняется массив объявлений: остаются только те, чьи offer.type равен select.value
   // рендерится измененный массив
 
+  var CLASSIFIED_QUANTITY = 5;
+
   var mapFiltersForm = document.querySelector('.map__filters');
   // var mapFiltersFormElements = Array.from(mapFiltersForm.querySelectorAll('.map__filter'));
 
@@ -19,10 +21,12 @@
     var guestsSelect = mapFiltersForm.querySelector('#housing-guests');
 
     var selectFilter = function (select, param) {
+      var rawAppropriateClassifieds = [];
       if (select.value !== 'any') {
-        appropriateClassifieds = filteredClassifieds.filter(function (it) {
+        rawAppropriateClassifieds = filteredClassifieds.filter(function (it) {
           return it.offer[param].toString() === select.value;
         });
+        appropriateClassifieds = rawAppropriateClassifieds.slice(0, CLASSIFIED_QUANTITY);
         // inappropriateClassifieds = filteredClassifieds.filter(function (it) {
         //   return it.offer[param].toString() !== select.value;
         // });
