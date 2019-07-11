@@ -3,15 +3,6 @@
 (function () {
   var URL = 'https://js.dump.academy/keksobooking/data';
 
-  var classifiedListWidth = document.querySelector('.map__pins').offsetWidth;
-
-  var CLASSIFIED_COORD_LIMITS = {
-    minX: 0,
-    maxX: classifiedListWidth,
-    minY: 130,
-    maxY: 630
-  };
-
   var сlassifieds = null;
 
   var getClassifieds = function () {
@@ -31,7 +22,6 @@
   getClassifieds();
 
   window.data = {
-    CLASSIFIED_COORD_LIMITS: CLASSIFIED_COORD_LIMITS,
     getClassifieds: getClassifieds
   };
 

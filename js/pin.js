@@ -1,6 +1,15 @@
 'use strict';
 
 (function () {
+  var classifiedListWidth = document.querySelector('.map__pins').offsetWidth;
+
+  var CLASSIFIED_COORD_LIMITS = {
+    minX: 0,
+    maxX: classifiedListWidth,
+    minY: 130,
+    maxY: 630
+  };
+
   window.map.mainMapPin.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
 
@@ -25,17 +34,17 @@
       };
 
       var mainMapPinX = window.map.mainMapPin.offsetLeft - shift.x;
-      if (mainMapPinX < window.data.CLASSIFIED_COORD_LIMITS.minX - pinParams.width / 2) {
-        mainMapPinX = window.data.CLASSIFIED_COORD_LIMITS.minX;
-      } else if (mainMapPinX > window.data.CLASSIFIED_COORD_LIMITS.maxX - pinParams.width / 2) {
-        mainMapPinX = window.data.CLASSIFIED_COORD_LIMITS.maxX - pinParams.width / 2;
+      if (mainMapPinX < CLASSIFIED_COORD_LIMITS.minX - pinParams.width / 2) {
+        mainMapPinX = CLASSIFIED_COORD_LIMITS.minX;
+      } else if (mainMapPinX > CLASSIFIED_COORD_LIMITS.maxX - pinParams.width / 2) {
+        mainMapPinX = CLASSIFIED_COORD_LIMITS.maxX - pinParams.width / 2;
       }
 
       var mainMapPinY = window.map.mainMapPin.offsetTop - shift.y;
-      if (mainMapPinY < window.data.CLASSIFIED_COORD_LIMITS.minY) {
-        mainMapPinY = window.data.CLASSIFIED_COORD_LIMITS.minY;
-      } else if (mainMapPinY > window.data.CLASSIFIED_COORD_LIMITS.maxY) {
-        mainMapPinY = window.data.CLASSIFIED_COORD_LIMITS.maxY;
+      if (mainMapPinY < CLASSIFIED_COORD_LIMITS.minY) {
+        mainMapPinY = CLASSIFIED_COORD_LIMITS.minY;
+      } else if (mainMapPinY > CLASSIFIED_COORD_LIMITS.maxY) {
+        mainMapPinY = CLASSIFIED_COORD_LIMITS.maxY;
       }
 
       window.map.mainMapPin.style.top = mainMapPinY + 'px';
