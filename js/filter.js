@@ -6,14 +6,13 @@
   // рендерится измененный массив
 
   var mapFiltersForm = document.querySelector('.map__filters');
-  var mapFiltersFormElements = Array.from(mapFiltersForm.querySelectorAll('.map__filter'));
+  // var mapFiltersFormElements = Array.from(mapFiltersForm.querySelectorAll('.map__filter'));
 
-  console.log(mapFiltersFormElements);
-
-  var filteredClassifieds = [];
+  var appropriateClassifieds = [];
+  // var inappropriateClassifieds = [];
 
   var filterClassifieds = function (arr) {
-    filteredClassifieds = arr.slice();
+    var filteredClassifieds = arr.slice();
 
     var typeSelect = mapFiltersForm.querySelector('#housing-type');
     var roomsSelect = mapFiltersForm.querySelector('#housing-rooms');
@@ -21,9 +20,12 @@
 
     var selectFilter = function (select, param) {
       if (select.value !== 'any') {
-        filteredClassifieds = filteredClassifieds.filter(function (it) {
+        appropriateClassifieds = filteredClassifieds.filter(function (it) {
           return it.offer[param].toString() === select.value;
         });
+        // inappropriateClassifieds = filteredClassifieds.filter(function (it) {
+        //   return it.offer[param].toString() !== select.value;
+        // });
       }
     };
 
@@ -33,9 +35,14 @@
   };
 
   mapFiltersForm.addEventListener('change', function () {
-    // window.render.renderClassifieds(filterClassifieds(window.data.getClassifieds()));
     filterClassifieds(window.data.getClassifieds());
-    console.log(filteredClassifieds);
+
+    var mapPins = document.querySelectorAll('.map__pin');
+    mapPins.forEach(function (element) {
+      window.render.classifiedList.removeChild(element);
+    });
+
+    window.render.renderClassifieds(appropriateClassifieds);
   });
 
 })();
