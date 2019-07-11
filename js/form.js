@@ -1,12 +1,14 @@
 'use strict';
 
 (function () {
+  var CLASSIFIED_QUANTITY = 5;
+
   var adForm = document.querySelector('.ad-form');
   var adFormHeader = adForm.querySelector('.ad-form-header');
   var adFormElements = adForm.querySelectorAll('.ad-form__element');
   var map = document.querySelector('.map');
   var mapFiltersForm = map.querySelector('.map__filters');
-  var mapFiltersFormElements = mapFiltersForm.querySelectorAll('.map__filter');
+  var mapFiltersFormElements = Array.from(mapFiltersForm.querySelectorAll('.map__filter'));
   var initialClassifiedListChildrenQuantity = window.render.classifiedList.children.length;
 
   var priceFormInput = adForm.querySelector('#price');
@@ -37,7 +39,7 @@
     adFormHeader.disabled = false;
     disableFormElements(adFormElements, false);
     disableFormElements(mapFiltersFormElements, false);
-    if (window.render.classifiedList.children.length < initialClassifiedListChildrenQuantity + window.data.CLASSIFIED_QUANTITY) {
+    if (window.render.classifiedList.children.length < initialClassifiedListChildrenQuantity + CLASSIFIED_QUANTITY) {
       window.render.renderClassifieds(window.data.getClassifieds());
     }
   };

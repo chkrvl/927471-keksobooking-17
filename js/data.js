@@ -2,7 +2,6 @@
 
 (function () {
   var URL = 'https://js.dump.academy/keksobooking/data';
-  var CLASSIFIED_QUANTITY = 8;
 
   var classifiedListWidth = document.querySelector('.map__pins').offsetWidth;
 
@@ -32,7 +31,6 @@
   getClassifieds();
 
   window.data = {
-    CLASSIFIED_QUANTITY: CLASSIFIED_QUANTITY,
     CLASSIFIED_COORD_LIMITS: CLASSIFIED_COORD_LIMITS,
     getClassifieds: getClassifieds
   };
