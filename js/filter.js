@@ -11,7 +11,7 @@
   // var mapFiltersFormElements = Array.from(mapFiltersForm.querySelectorAll('.map__filter'));
 
   var appropriateClassifieds = [];
-  var inappropriateClassifieds = [];
+  // var inappropriateClassifieds = [];
 
   var filterClassifieds = function (arr) {
     var filteredClassifieds = arr.slice();
@@ -27,9 +27,9 @@
           return it.offer[param].toString() === select.value;
         });
         appropriateClassifieds = rawAppropriateClassifieds.slice(0, CLASSIFIED_QUANTITY);
-        inappropriateClassifieds = filteredClassifieds.filter(function (it) {
-          return it.offer[param].toString() !== select.value;
-        });
+        // inappropriateClassifieds = filteredClassifieds.filter(function (it) {
+        //   return it.offer[param].toString() !== select.value;
+        // });
       }
     };
 
@@ -41,16 +41,10 @@
   mapFiltersForm.addEventListener('change', function () {
     filterClassifieds(window.data.getClassifieds());
 
-    console.log(appropriateClassifieds);
-    console.log(inappropriateClassifieds);
+    // console.log(appropriateClassifieds);
+    // console.log(inappropriateClassifieds);
 
-    console.log(window.render.classifiedList);
-
-    var mapPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
-    mapPins.forEach(function (element) {
-      window.render.classifiedList.removeChild(element);
-    });
-
+    window.render.removeClassifieds();
     window.render.renderClassifieds(appropriateClassifieds);
   });
 

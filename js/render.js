@@ -38,8 +38,16 @@
     classifiedList.appendChild(fragment);
   };
 
+  var removeClassifieds = function () {
+    var mapPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
+    mapPins.forEach(function (element) {
+      classifiedList.removeChild(element);
+    });
+  };
+
   window.render = {
     renderClassifieds: renderClassifieds,
+    removeClassifieds: removeClassifieds,
     classifiedList: classifiedList
   };
 
