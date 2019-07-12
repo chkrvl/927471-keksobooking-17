@@ -27,6 +27,8 @@
         // inappropriateClassifieds = filteredClassifieds.filter(function (it) {
         //   return it.offer[param].toString() !== select.value;
         // });
+      } else {
+        appropriateClassifieds = rawClassifieds;
       }
     };
 
