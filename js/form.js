@@ -1,12 +1,14 @@
 'use strict';
 
 (function () {
+  var CLASSIFIED_QUANTITY = 5;
+
   var adForm = document.querySelector('.ad-form');
   var adFormHeader = adForm.querySelector('.ad-form-header');
   var adFormElements = adForm.querySelectorAll('.ad-form__element');
   var map = document.querySelector('.map');
   var mapFiltersForm = map.querySelector('.map__filters');
-  var mapFiltersFormElements = mapFiltersForm.querySelectorAll('.map__filter');
+  var mapFiltersFormElements = Array.from(mapFiltersForm.querySelectorAll('.map__filter'));
   var initialClassifiedListChildrenQuantity = window.render.classifiedList.children.length;
 
   var priceFormInput = adForm.querySelector('#price');
@@ -14,10 +16,12 @@
   var timeInFormSelect = adForm.querySelector('#timein');
   var timeOutFormSelect = adForm.querySelector('#timeout');
 
-  var BUNGALO_PRICE_THRESHOLD = '0';
-  var FLAT_PRICE_THRESHOLD = '1000';
-  var HOUSE_PRICE_THRESHOLD = '5000';
-  var PALACE_PRICE_THRESHOLD = '10000';
+  var PriceThreshold = {
+    BUNGALO: '0',
+    FLAT: '1000',
+    HOUSE: '5000',
+    PALACE: '10000'
+  };
 
   var disableFormElements = function (arr, status) {
     arr.forEach(function (element) {
@@ -35,7 +39,7 @@
     adFormHeader.disabled = false;
     disableFormElements(adFormElements, false);
     disableFormElements(mapFiltersFormElements, false);
-    if (window.render.classifiedList.children.length < initialClassifiedListChildrenQuantity + window.data.CLASSIFIED_QUANTITY) {
+    if (window.render.classifiedList.children.length < initialClassifiedListChildrenQuantity + CLASSIFIED_QUANTITY) {
       window.render.renderClassifieds(window.data.getClassifieds());
     }
   };
@@ -43,10 +47,10 @@
   var getTypes = function () {
     var types = [];
     var lodgingThresholds = {
-      bungalo: BUNGALO_PRICE_THRESHOLD,
-      flat: FLAT_PRICE_THRESHOLD,
-      house: HOUSE_PRICE_THRESHOLD,
-      palace: PALACE_PRICE_THRESHOLD
+      bungalo: PriceThreshold.BUNGALO,
+      flat: PriceThreshold.FLAT,
+      house: PriceThreshold.HOUSE,
+      palace: PriceThreshold.PALACE
     };
 
     for (var i = 0; i < typeFormSelect.options.length; i++) {
