@@ -1,11 +1,16 @@
 'use strict';
 
 (function () {
+  var CLASSIFIED_QUANTITY = 5;
+
   var classifiedList = document.querySelector('.map__pins');
   var classifiedTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
 
   var renderClassifieds = function (arr) {
     var fragment = document.createDocumentFragment();
+
+    // ограничение количества отображаемых объявлений
+    var limitedClassifieds = arr.slice(0, CLASSIFIED_QUANTITY);
 
     // Получение размеров метки объявления
     classifiedTemplate.style.position = 'absolute';
@@ -16,8 +21,9 @@
     var pinWidth = classifiedTemplateParams.width;
     var pinHeight = classifiedTemplateParams.height;
 
-    arr.forEach(function (сlassified) {
+    limitedClassifieds.forEach(function (сlassified) {
       var classifiedElement = classifiedTemplate.cloneNode(true);
+
       // Получение координат острого конца метки объявления
       var left = сlassified.location.x - pinWidth / 2;
       var top = сlassified.location.y - pinHeight;
