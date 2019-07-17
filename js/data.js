@@ -11,6 +11,7 @@
 
       var getData = function (arr) {
         сlassifieds = arr.slice();
+        console.log(сlassifieds[0]);
       };
 
       window.backend.load(URL, getData, window.error.renderErrorNotice);
@@ -20,6 +21,7 @@
   };
 
   getClassifieds();
+
 
   window.data = {
     getClassifieds: getClassifieds
